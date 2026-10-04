@@ -1,0 +1,260 @@
+:root {
+  --bg-deep: #05080f;
+  --panel: rgba(20, 28, 50, .68);
+  --line: rgba(120, 160, 255, .16);
+  --text: #e8eeff;
+  --muted: #8ea0c8;
+  --accent: #38ffaa;
+  --accent-soft: #7dffc0;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(120% 70% at 50% -8%, #17284e 0%, #0a1122 46%, var(--bg-deep) 100%) fixed;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.app {
+  max-width: 560px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: max(30px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right))
+    max(28px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* 内容比屏幕短时整体居中；用 auto 外边距而不是 justify-content:center，
+   这样内容变长时顶部不会被裁掉 */
+.hero { margin-top: auto; }
+.foot { margin-bottom: auto; }
+
+/* ---------- 顶部 ---------- */
+.hero {
+  text-align: center;
+  padding-top: 6px;
+}
+
+.hero__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: .42em;
+  text-indent: .42em;
+  color: rgba(125, 255, 192, .62);
+}
+
+.hero__title {
+  margin: 0;
+  font-size: clamp(28px, 8.4vw, 40px);
+  letter-spacing: .06em;
+  background: linear-gradient(100deg, #7dffc0 10%, #65d0ff 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__sub {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ---------- 游戏卡片 ---------- */
+.games {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 14px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(160deg, rgba(26, 38, 68, .86), rgba(12, 18, 36, .86));
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .46), inset 0 1px 0 rgba(255, 255, 255, .06);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .14s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.card:active {
+  transform: scale(.985);
+  border-color: rgba(56, 255, 170, .42);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .5), 0 0 0 1px rgba(56, 255, 170, .16);
+}
+
+.card__cover {
+  flex: none;
+  width: 78px;
+  height: 78px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 13, 26, .8);
+  box-shadow: inset 0 0 0 1px rgba(120, 160, 255, .14);
+}
+
+.card__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.card__cover--soon {
+  font-size: 30px;
+  color: rgba(142, 160, 200, .5);
+  background: repeating-linear-gradient(45deg, rgba(120, 160, 255, .05) 0 8px, transparent 8px 16px), rgba(8, 13, 26, .6);
+}
+
+.card__body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card__head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card__title {
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.card__tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+.card__tag--snake {
+  color: #b6ffd9;
+  border-color: rgba(56, 255, 170, .34);
+  background: rgba(56, 255, 170, .1);
+}
+
+.card__tag--tetris {
+  color: #bfe6ff;
+  border-color: rgba(101, 208, 255, .34);
+  background: rgba(101, 208, 255, .1);
+}
+
+.card__desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.card__meta {
+  font-size: 11.5px;
+  color: rgba(142, 160, 200, .68);
+}
+
+.card__arrow {
+  flex: none;
+  font-size: 24px;
+  line-height: 1;
+  color: rgba(142, 160, 200, .55);
+  padding-right: 2px;
+}
+
+.card--soon {
+  opacity: .62;
+  box-shadow: none;
+}
+
+/* ---------- 底部 ---------- */
+.foot {
+  margin-top: 2px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.foot__hint {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: rgba(142, 160, 200, .8);
+}
+
+.foot__icon {
+  display: inline-block;
+  margin-right: 4px;
+  color: var(--accent);
+}
+
+.foot__links {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(142, 160, 200, .5);
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.foot__links a {
+  color: rgba(125, 255, 192, .72);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 255, 192, .22);
+  padding-bottom: 1px;
+}
+
+.foot__links a:active {
+  color: var(--accent);
+}
+
+@media (min-width: 420px) {
+  .card__cover { width: 88px; height: 88px; }
+  .card__title { font-size: 17.5px; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero, .card, .foot {
+  animation: rise .34s ease both;
+}
+
+.card:nth-child(1) { animation-delay: .04s; }
+.card:nth-child(2) { animation-delay: .09s; }
+.card:nth-child(3) { animation-delay: .14s; }
+.foot { animation-delay: .18s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero, .card, .foot { animation: none; }
+}

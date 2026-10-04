@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070b16">
+<meta name="description" content="秋叶的游戏盒 — 手机打开就能玩的小游戏合集，支持添加到主屏幕离线游玩。">
+<meta name="format-detection" content="telephone=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="游戏盒">
+<title>秋叶的游戏盒</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <p class="hero__eyebrow">GAME BOX</p>
+    <h1 class="hero__title">秋叶的游戏盒</h1>
+    <p class="hero__sub">手机打开就能玩 · 无需下载 · 断网也能玩</p>
+  </header>
+
+  <main class="games">
+    <a class="card" href="https://qiuye-autumnnight.github.io/snake-game/">
+      <span class="card__cover">
+        <img src="./covers/cover-snake.png" alt="" width="300" height="300" loading="lazy" decoding="async">
+      </span>
+      <span class="card__body">
+        <span class="card__head">
+          <span class="card__title">霓虹贪吃蛇</span>
+          <span class="card__tag card__tag--snake">滑动操作</span>
+        </span>
+        <span class="card__desc">吃到果实会变长并加速，别撞墙，也别咬到自己。</span>
+        <span class="card__meta">最高分保存在本机</span>
+      </span>
+      <span class="card__arrow" aria-hidden="true">›</span>
+    </a>
+
+    <a class="card" href="https://qiuye-autumnnight.github.io/tetris/">
+      <span class="card__cover">
+        <img src="./covers/cover-tetris.png" alt="" width="300" height="300" loading="lazy" decoding="async">
+      </span>
+      <span class="card__body">
+        <span class="card__head">
+          <span class="card__title">霓虹俄罗斯方块</span>
+          <span class="card__tag card__tag--tetris">经典规则</span>
+        </span>
+        <span class="card__desc">标准 SRS 旋转，带幽灵落点预览、暂存和下一个提示。</span>
+        <span class="card__meta">消行升级，越堆越快</span>
+      </span>
+      <span class="card__arrow" aria-hidden="true">›</span>
+    </a>
+
+    <div class="card card--soon" aria-disabled="true">
+      <span class="card__cover card__cover--soon">＋</span>
+      <span class="card__body">
+        <span class="card__head">
+          <span class="card__title">更多游戏</span>
+          <span class="card__tag">待续</span>
+        </span>
+        <span class="card__desc">这个盒子会慢慢变满。</span>
+      </span>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <p class="foot__hint">
+      <span class="foot__icon" aria-hidden="true">⇧</span>
+      在浏览器菜单里选「添加到主屏幕」，即可全屏启动
+    </p>
+    <p class="foot__links">
+      <a href="https://github.com/qiuye-AuTumnNight/snake-game">贪吃蛇源码</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/qiuye-AuTumnNight/tetris">俄罗斯方块源码</a>
+    </p>
+  </footer>
+</div>
+<script>
+  if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js').catch(function () { /* 离线能力可选 */ });
+    });
+  }
+</script>
+</body>
+</html>
