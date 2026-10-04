@@ -16,7 +16,9 @@ const ASSETS = new Set([
   '/icons/icon-512.png',
   '/icons/icon-maskable-512.png',
   '/icons/apple-touch-icon.png',
+  '/covers/cover-snake.webp',
   '/covers/cover-snake.png',
+  '/covers/cover-tetris.webp',
   '/covers/cover-tetris.png',
 ]);
 
