@@ -19,6 +19,7 @@
 | 🐍 霓虹贪吃蛇 | <https://qiuye-autumnnight.github.io/snake-game/> | [snake-game](https://github.com/qiuye-AuTumnNight/snake-game) |
 | 🧱 霓虹俄罗斯方块 | <https://qiuye-autumnnight.github.io/tetris/> | [tetris](https://github.com/qiuye-AuTumnNight/tetris) |
 | 🔥 龙炉 · 铸剑纳贡 | <https://qiuye-autumnnight.github.io/dragon-forge/> | [dragon-forge](https://github.com/qiuye-AuTumnNight/dragon-forge) |
+| 🃏 林间牌局 | <https://qiuye-autumnnight.github.io/inscrypt-like/> | [inscrypt-like](https://github.com/qiuye-AuTumnNight/inscrypt-like) |
 
 每个游戏都是独立的仓库、独立的 PWA，可以单独安装到主屏幕；它们的顶部都有一个 🏠 按钮可以回到这里。
 

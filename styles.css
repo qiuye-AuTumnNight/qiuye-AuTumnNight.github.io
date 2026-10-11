@@ -176,6 +176,12 @@ body {
   background: rgba(255, 138, 61, .12);
 }
 
+.card__tag--card {
+  color: #f0d9a8;
+  border-color: rgba(217, 163, 74, .42);
+  background: rgba(217, 163, 74, .13);
+}
+
 .card__tag--tetris {
   color: #bfe6ff;
   border-color: rgba(101, 208, 255, .34);
