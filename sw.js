@@ -20,6 +20,8 @@ const ASSETS = new Set([
   '/covers/cover-snake.png',
   '/covers/cover-tetris.webp',
   '/covers/cover-tetris.png',
+  '/covers/cover-forge.webp',
+  '/covers/cover-forge.png',
 ]);
 
 self.addEventListener('install', (event) => {

@@ -170,6 +170,12 @@ body {
   background: rgba(56, 255, 170, .1);
 }
 
+.card__tag--forge {
+  color: #ffd7a3;
+  border-color: rgba(255, 138, 61, .38);
+  background: rgba(255, 138, 61, .12);
+}
+
 .card__tag--tetris {
   color: #bfe6ff;
   border-color: rgba(101, 208, 255, .34);

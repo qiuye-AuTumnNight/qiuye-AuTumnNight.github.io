@@ -1,3 +1,6 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# make-covers 抓的原始大图，只用来生成 cover-*，不进仓库
+covers/*-board.png
