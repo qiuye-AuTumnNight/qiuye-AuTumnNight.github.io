@@ -245,11 +245,16 @@ body {
   font-size: 12px;
   color: rgba(142, 160, 200, .5);
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 8px;
+  row-gap: 6px;
 }
 
+/* 游戏多了以后必须整项换行：否则每个链接会被压窄成「贪吃蛇源 / 码」 */
 .foot__links a {
+  white-space: nowrap;
   color: rgba(125, 255, 192, .72);
   text-decoration: none;
   border-bottom: 1px solid rgba(125, 255, 192, .22);
