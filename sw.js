@@ -24,6 +24,8 @@ const ASSETS = new Set([
   '/covers/cover-forge.png',
   '/covers/cover-cardgame.webp',
   '/covers/cover-cardgame.png',
+  '/covers/cover-stock.webp',
+  '/covers/cover-stock.png',
 ]);
 
 self.addEventListener('install', (event) => {
