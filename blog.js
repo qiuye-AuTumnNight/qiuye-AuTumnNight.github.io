@@ -252,7 +252,7 @@
     const intro = '<header class="hero">'
       + '<p class="hero__eyebrow">LEAVES</p>'
       + '<h1 class="hero__title">秋叶的窝</h1>'
-      + '<p class="hero__sub">一些关于小游戏和代码的记录，<br>顺手把做的东西放在这里。</p>'
+      + '<p class="hero__sub">史上最帅高中生</p>'
       + '</header>';
 
     if (!state.loaded) {
