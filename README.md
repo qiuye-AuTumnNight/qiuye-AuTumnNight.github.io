@@ -2,6 +2,8 @@
 
 一个**手机优先**的个人小站：首页是文章，游戏盒是其中一块。纯静态，挂在 GitHub Pages 上。
 
+> 史上最帅高中生。
+
 ![预览](./screenshot.png)
 
 **打开看看：<https://qiuye-autumnnight.github.io/>**
