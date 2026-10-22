@@ -382,7 +382,12 @@ body.is-locked { overflow: hidden; }
 .main .hero { padding-top: 0; }
 .main .hero__eyebrow { margin-bottom: 8px; }
 .main .hero__title { font-size: clamp(24px, 7.2vw, 32px); }
-.main .hero__sub { margin-top: 9px; font-size: 13px; line-height: 1.75; }
+.main .hero__sub {
+  margin-top: 10px;
+  font-size: 14.5px;
+  letter-spacing: .08em;
+  line-height: 1.7;
+}
 
 .loading,
 .empty {
