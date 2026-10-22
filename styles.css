@@ -697,6 +697,37 @@ body.is-locked { overflow: hidden; }
 
 .btn--ghost:active { color: var(--accent); border-color: rgba(56, 255, 170, .4); }
 
+.btn--danger {
+  color: #fff;
+  background: linear-gradient(100deg, #ff7a7a, #d92d3a);
+  box-shadow: 0 8px 22px rgba(220, 60, 70, .24);
+}
+
+/* 小号操作按钮：文章的删除、每条留言的删除 */
+.mini-btn {
+  padding: 2px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(20, 28, 50, .7);
+  color: rgba(142, 160, 200, .85);
+  font-family: inherit;
+  font-size: 10.5px;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+
+.mini-btn:active {
+  color: #ff9a9a;
+  border-color: rgba(255, 120, 120, .5);
+  background: rgba(60, 24, 30, .85);
+}
+
+.article__meta .mini-btn { margin-left: auto; }
+
+.comment__del { margin-left: 2px; }
+
 .link {
   color: var(--accent-soft);
   text-decoration: none;
@@ -782,7 +813,8 @@ body.is-locked { overflow: hidden; }
   background: linear-gradient(180deg, #131c33, #0b1120);
   box-shadow: 0 -18px 48px rgba(0, 0, 0, .6);
   animation: sheet-up .24s cubic-bezier(.2, .9, .3, 1) both;
-  padding-bottom: env(safe-area-inset-bottom);
+  /* 别让按钮贴着屏幕最下沿：真机上会顶到 Home 指示条 */
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
 }
 
 @keyframes sheet-up {
@@ -898,6 +930,12 @@ body.is-locked { overflow: hidden; }
 }
 
 .toast[hidden] { display: none; }
+
+/* 弹层打开时挪到顶部，避免压住弹层底部的按钮 */
+.toast--top {
+  top: calc(14px + env(safe-area-inset-top));
+  bottom: auto;
+}
 
 .toast.is-error {
   border-color: rgba(255, 120, 120, .45);
