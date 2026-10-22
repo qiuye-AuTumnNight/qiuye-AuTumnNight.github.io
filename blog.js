@@ -101,6 +101,8 @@
   function toast(msg, isError) {
     toastEl.textContent = msg;
     toastEl.classList.toggle('is-error', !!isError);
+    // 弹层打开时把提示挪到顶部：底部的位置会被弹层自己的按钮压住
+    toastEl.classList.toggle('toast--top', !sheet.hidden);
     toastEl.hidden = false;
     if (toastTimer) clearTimeout(toastTimer);
     toastTimer = setTimeout(() => { toastEl.hidden = true; }, isError ? 5200 : 2600);
@@ -284,13 +286,28 @@
   /* ==================== 渲染：文章详情 ==================== */
   function commentList(list, emptyText) {
     if (!list.length) return '<p class="comments__empty">' + emptyText + '</p>';
+    // 删除按钮只给有令牌的人看：访客看到的应该是干净的阅读界面
+    const canDel = !!state.token;
     return '<ul class="comments__list">' + list.map((c) => {
       return '<li class="comment">'
         + '<div class="comment__head"><b>' + esc(c.name || '匿名') + '</b>'
-        + '<time>' + esc(fmtDate(c.date, true)) + '</time></div>'
+        + '<time>' + esc(fmtDate(c.date, true)) + '</time>'
+        + (canDel ? '<button type="button" class="mini-btn comment__del" data-cid="'
+          + esc(c.id) + '">删除</button>' : '')
+        + '</div>'
         + '<div class="comment__text">' + richText(c.text) + '</div>'
         + '</li>';
     }).join('') + '</ul>';
+  }
+
+  function wireCommentDeletes() {
+    if (!state.token) return;
+    view.querySelectorAll('.comment__del').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const c = state.data.comments.find((x) => x.id === btn.dataset.cid);
+        if (c) confirmDeleteComment(c);
+      });
+    });
   }
 
   function renderPost(id) {
@@ -304,7 +321,9 @@
     view.innerHTML = '<article class="article">'
       + '<a class="back" href="#/">‹ 返回</a>'
       + '<h1 class="article__title">' + esc(post.title) + '</h1>'
-      + '<div class="article__meta">' + esc(fmtDate(post.date)) + (tags ? ' · ' + tags : '') + '</div>'
+      + '<div class="article__meta">' + esc(fmtDate(post.date)) + (tags ? ' · ' + tags : '')
+      + (state.token ? '<button type="button" class="mini-btn" id="btnDelPost">删除</button>' : '')
+      + '</div>'
       + '<div class="article__body">' + richText(post.body) + '</div>'
       + '</article>'
       + '<section class="comments">'
@@ -315,6 +334,9 @@
       + commentList(list, '还没有评论，来说两句？')
       + '</section>';
     document.getElementById('btnComment').addEventListener('click', () => openComposer('comment', id));
+    const delPost = document.getElementById('btnDelPost');
+    if (delPost) delPost.addEventListener('click', () => confirmDeletePost(post));
+    wireCommentDeletes();
   }
 
   /* ==================== 渲染：留言板 ==================== */
@@ -328,6 +350,7 @@
       + '<div class="feed__actions"><button type="button" class="btn btn--primary" id="btnGuest">✎ 写留言</button></div>'
       + '<section class="comments">' + commentList(list, '这里还空着，第一条留给你。') + '</section>';
     document.getElementById('btnGuest').addEventListener('click', () => openComposer('guest'));
+    wireCommentDeletes();
   }
 
   function render() {
@@ -348,6 +371,9 @@
 
   /* ==================== 弹层 ==================== */
   function openSheet(title, html) {
+    // 清掉残留提示，否则它可能正好压在弹层的按钮上
+    toastEl.hidden = true;
+    if (toastTimer) clearTimeout(toastTimer);
     sheetTitle.textContent = title;
     sheetBody.innerHTML = html;
     sheet.hidden = false;
@@ -405,6 +431,63 @@
         toast('已清除令牌');
       });
     }
+  }
+
+  /* ==================== 删除 ==================== */
+  // 删除是不可逆的，所以走二次确认；确认层复用了编辑弹层，样式和交互都一致
+  function openConfirm(title, noteHtml, onConfirm) {
+    openSheet(title, ''
+      + '<p class="sheet__note">' + noteHtml + '</p>'
+      + '<div class="sheet__actions">'
+      + '<button type="button" class="btn btn--ghost" id="fCancel">取消</button>'
+      + '<button type="button" class="btn btn--danger" id="fConfirm">删除</button>'
+      + '</div>');
+    document.getElementById('fCancel').addEventListener('click', closeSheet);
+
+    const btn = document.getElementById('fConfirm');
+    btn.addEventListener('click', async () => {
+      setBusy(btn, true, '删除中…');
+      try {
+        await onConfirm();
+      } catch (e) {
+        if (e && e.message === 'NO_TOKEN') { closeSheet(); openTokenSheet(); return; }
+        toast(errorText(e), true);
+      } finally {
+        setBusy(btn, false);
+      }
+    });
+  }
+
+  function confirmDeletePost(post) {
+    const kids = commentsFor(post.id).length;
+    openConfirm('删除这篇文章',
+      '「<b>' + esc(post.title) + '</b>」会被永久删除，'
+      + (kids ? '它下面的 <b>' + kids + '</b> 条评论也会一起删掉，' : '')
+      + '这个操作不能撤销。',
+      async () => {
+        await commitData((d) => {
+          d.posts = d.posts.filter((p) => p.id !== post.id);
+          // 文章没了，挂在它下面的评论也要清掉，否则会留下无主的孤儿数据
+          d.comments = d.comments.filter((c) => c.post !== post.id);
+        }, 'delete post: ' + post.title);
+        closeSheet();
+        toast('已删除，GitHub Pages 约 1 分钟后生效');
+        location.hash = '#/';
+        render();
+      });
+  }
+
+  function confirmDeleteComment(c) {
+    openConfirm('删除这条留言',
+      '「<b>' + esc(excerpt(c.text, 40)) + '</b>」会被永久删除，这个操作不能撤销。',
+      async () => {
+        await commitData((d) => {
+          d.comments = d.comments.filter((x) => x.id !== c.id);
+        }, 'delete comment: ' + excerpt(c.text, 20));
+        closeSheet();
+        toast('已删除，GitHub Pages 约 1 分钟后生效');
+        render();
+      });
   }
 
   /* ==================== 编辑器 ==================== */
