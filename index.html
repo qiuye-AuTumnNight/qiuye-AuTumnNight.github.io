@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070b16">
-<meta name="description" content="秋叶的游戏盒 — 手机打开就能玩的小游戏合集，支持添加到主屏幕离线游玩。">
+<meta name="description" content="秋叶的窝 —— 一些关于小游戏和代码的记录，顺便放着自己做的几个手机游戏。">
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="游戏盒">
-<title>秋叶的游戏盒</title>
+<meta name="apple-mobile-web-app-title" content="秋叶的窝">
+<title>秋叶的窝</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
@@ -18,113 +18,20 @@
 </head>
 <body>
 <div class="app">
-  <header class="hero">
-    <p class="hero__eyebrow">GAME BOX</p>
-    <h1 class="hero__title">秋叶的游戏盒</h1>
-    <p class="hero__sub">手机打开就能玩 · 无需下载 · 断网也能玩</p>
+
+  <header class="topbar">
+    <a class="topbar__brand" href="./">
+      <span class="topbar__dot" aria-hidden="true"></span>秋叶的窝
+    </a>
+    <nav class="topbar__nav" id="nav">
+      <a href="./" data-nav="home">首页</a>
+      <a href="./games.html" data-nav="games">游戏盒</a>
+      <a href="#/guest" data-nav="guest">留言板</a>
+    </nav>
   </header>
 
-  <main class="games">
-    <a class="card" href="https://qiuye-autumnnight.github.io/snake-game/">
-      <span class="card__cover">
-        <picture>
-          <source srcset="./covers/cover-snake.webp" type="image/webp">
-          <img src="./covers/cover-snake.png" alt="" width="300" height="300" loading="lazy" decoding="async">
-        </picture>
-      </span>
-      <span class="card__body">
-        <span class="card__head">
-          <span class="card__title">霓虹贪吃蛇</span>
-          <span class="card__tag card__tag--snake">滑动操作</span>
-        </span>
-        <span class="card__desc">吃到果实会变长并加速，别撞墙，也别咬到自己。</span>
-        <span class="card__meta">最高分保存在本机</span>
-      </span>
-      <span class="card__arrow" aria-hidden="true">›</span>
-    </a>
-
-    <a class="card" href="https://qiuye-autumnnight.github.io/tetris/">
-      <span class="card__cover">
-        <picture>
-          <source srcset="./covers/cover-tetris.webp" type="image/webp">
-          <img src="./covers/cover-tetris.png" alt="" width="300" height="300" loading="lazy" decoding="async">
-        </picture>
-      </span>
-      <span class="card__body">
-        <span class="card__head">
-          <span class="card__title">霓虹俄罗斯方块</span>
-          <span class="card__tag card__tag--tetris">经典规则</span>
-        </span>
-        <span class="card__desc">标准 SRS 旋转，带幽灵落点预览、暂存和下一个提示。</span>
-        <span class="card__meta">消行升级，越堆越快</span>
-      </span>
-      <span class="card__arrow" aria-hidden="true">›</span>
-    </a>
-
-    <a class="card" href="https://qiuye-autumnnight.github.io/dragon-forge/">
-      <span class="card__cover">
-        <picture>
-          <source srcset="./covers/cover-forge.webp" type="image/webp">
-          <img src="./covers/cover-forge.png" alt="" width="300" height="300" loading="lazy" decoding="async">
-        </picture>
-      </span>
-      <span class="card__body">
-        <span class="card__head">
-          <span class="card__title">龙炉 · 铸剑纳贡</span>
-          <span class="card__tag card__tag--forge">押注决策</span>
-        </span>
-        <span class="card__desc">敲得越多价值越高，碎裂的风险也越大。见好就收，还是再来一锤？</span>
-        <span class="card__meta">遗物连锁 · 巨龙贡品</span>
-      </span>
-      <span class="card__arrow" aria-hidden="true">›</span>
-    </a>
-
-    <a class="card" href="https://qiuye-autumnnight.github.io/inscrypt-like/">
-      <span class="card__cover">
-        <picture>
-          <source srcset="./covers/cover-cardgame.webp" type="image/webp">
-          <img src="./covers/cover-cardgame.png" alt="" width="300" height="300" loading="lazy" decoding="async">
-        </picture>
-      </span>
-      <span class="card__body">
-        <span class="card__head">
-          <span class="card__title">林间牌局</span>
-          <span class="card__tag card__tag--card">肉鸽卡牌</span>
-        </span>
-        <span class="card__desc">血祭召唤、骨头代币，把天平推向自己这边。含关卡与无限模式。</span>
-        <span class="card__meta">七种印记 · 三章 Boss</span>
-      </span>
-      <span class="card__arrow" aria-hidden="true">›</span>
-    </a>
-
-    <a class="card" href="https://qiuye-autumnnight.github.io/stock-sim/">
-      <span class="card__cover">
-        <picture>
-          <source srcset="./covers/cover-stock.webp" type="image/webp">
-          <img src="./covers/cover-stock.png" alt="" width="300" height="300" loading="lazy" decoding="async">
-        </picture>
-      </span>
-      <span class="card__body">
-        <span class="card__head">
-          <span class="card__title">股海浮沉</span>
-          <span class="card__tag card__tag--stock">炒股模拟</span>
-        </span>
-        <span class="card__desc">¥10,000 本金，30 个交易日。五只股票、突发新闻，看你能翻几倍。</span>
-        <span class="card__meta">红涨绿跌 · 结算评级</span>
-      </span>
-      <span class="card__arrow" aria-hidden="true">›</span>
-    </a>
-
-    <div class="card card--soon" aria-disabled="true">
-      <span class="card__cover card__cover--soon">＋</span>
-      <span class="card__body">
-        <span class="card__head">
-          <span class="card__title">更多游戏</span>
-          <span class="card__tag">待续</span>
-        </span>
-        <span class="card__desc">这个盒子会慢慢变满。</span>
-      </span>
-    </div>
+  <main class="main" id="view" aria-live="polite">
+    <div class="loading">正在读取……</div>
   </main>
 
   <footer class="foot">
@@ -133,24 +40,29 @@
       在浏览器菜单里选「添加到主屏幕」，即可全屏启动
     </p>
     <p class="foot__links">
-      <a href="https://github.com/qiuye-AuTumnNight/snake-game">贪吃蛇源码</a>
+      <a href="./games.html">游戏盒</a>
       <span aria-hidden="true">·</span>
-      <a href="https://github.com/qiuye-AuTumnNight/tetris">俄罗斯方块源码</a>
+      <a href="#/guest">留言板</a>
       <span aria-hidden="true">·</span>
-      <a href="https://github.com/qiuye-AuTumnNight/dragon-forge">龙炉源码</a>
-      <span aria-hidden="true">·</span>
-      <a href="https://github.com/qiuye-AuTumnNight/inscrypt-like">林间牌局源码</a>
-      <span aria-hidden="true">·</span>
-      <a href="https://github.com/qiuye-AuTumnNight/stock-sim">股海浮沉源码</a>
+      <a href="https://github.com/qiuye-AuTumnNight/qiuye-AuTumnNight.github.io" id="footSource">本站源码</a>
     </p>
+    <p class="foot__sync" id="footSync" hidden></p>
   </footer>
 </div>
-<script>
-  if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js').catch(function () { /* 离线能力可选 */ });
-    });
-  }
-</script>
+
+<!-- 编辑 / 令牌 弹层 -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="sheetTitle">写点什么</h2>
+      <button type="button" class="sheet__close" id="sheetClose" aria-label="关闭">✕</button>
+    </div>
+    <div class="sheet__body" id="sheetBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="./blog.js"></script>
 </body>
 </html>

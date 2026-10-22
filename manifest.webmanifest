@@ -1,7 +1,7 @@
 {
-  "name": "秋叶的游戏盒",
-  "short_name": "游戏盒",
-  "description": "手机打开就能玩的小游戏合集，支持添加到主屏幕离线游玩。",
+  "name": "秋叶的窝",
+  "short_name": "秋叶",
+  "description": "秋叶的窝 —— 一些关于小游戏和代码的记录，附游戏盒。",
   "lang": "zh-CN",
   "start_url": "./",
   "scope": "./",
@@ -9,7 +9,7 @@
   "orientation": "portrait",
   "background_color": "#070b16",
   "theme_color": "#070b16",
-  "categories": ["games", "entertainment"],
+  "categories": ["blog", "games", "entertainment"],
   "icons": [
     {
       "src": "./icons/icon-192.png",
