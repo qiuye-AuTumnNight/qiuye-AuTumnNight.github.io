@@ -20,8 +20,12 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  background:
-    radial-gradient(120% 70% at 50% -8%, #17284e 0%, #0a1122 46%, var(--bg-deep) 100%) fixed;
+  /* 必须单独给 background-color：用 background 简写会把颜色重置成透明，
+     加上 fixed 背景只覆盖视口高度，页面比屏幕长时下方会露出白底 */
+  background-color: var(--bg-deep);
+  background-image: radial-gradient(120% 70% at 50% -8%, #17284e 0%, #0a1122 46%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
